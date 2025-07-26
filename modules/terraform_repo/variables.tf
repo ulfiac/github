@@ -1,10 +1,20 @@
-variable "repo_name" {
+variable "name" {
   description = "The name of the repository"
   type        = string
 }
 
-variable "repo_description" {
+variable "description" {
   description = "A description for the repository"
   type        = string
   default     = ""
+}
+
+variable "visibility" {
+  description = "Visibility of the repository (public/private)"
+  type        = string
+  default     = "public"
+  validation {
+    condition     = contains(["public", "private"], var.repo_visibility)
+    error_message = "Visibility must be either 'public' or 'private'."
+  }
 }

@@ -3,6 +3,7 @@ module "terraform_repo" {
 
   source = "./modules/terraform_repo"
 
-  repo_name        = each.key
-  repo_description = each.value.repo_description
+  name        = each.key
+  description = each.value.repo_description
+  visibility  = each.value.repo_visibility
 }
