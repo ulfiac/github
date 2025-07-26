@@ -1,6 +1,6 @@
 resource "github_repository" "terraform_repo" {
-  name        = var.repo_name
-  description = var.repo_description
+  name        = var.name
+  description = var.description
 
   allow_auto_merge    = false
   allow_merge_commit  = false
@@ -21,7 +21,7 @@ resource "github_repository" "terraform_repo" {
   gitignore_template = "Terraform"
   license_template   = "mit"
 
-  visibility = "private"
+  visibility = var.visibility
 
   vulnerability_alerts = true
 }

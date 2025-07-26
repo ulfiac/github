@@ -1,10 +1,12 @@
 locals {
   terraform_repos = {
-    test-repo1 = {
-      repo_description = "My test-repo1 repo"
+    test-public-repo = {
+      repo_description = "test public repo"
+      repo_visibility  = "public"
     }
-    test-repo2 = {
-      repo_description = "My test-repo2 repo"
+    test-private-repo = {
+      repo_description = "test private repo"
+      repo_visibility  = "private"
     }
   }
 }
