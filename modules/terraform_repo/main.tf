@@ -1,11 +1,12 @@
-resource "github_repository" "example" {
+resource "github_repository" "terraform_repo" {
   name        = var.repo_name
   description = var.repo_description
 
-  allow_auto_merge   = false
-  allow_merge_commit = false
-  allow_rebase_merge = false
-  allow_squash_merge = true
+  allow_auto_merge    = false
+  allow_merge_commit  = false
+  allow_rebase_merge  = false
+  allow_squash_merge  = true
+  allow_update_branch = true
 
   auto_init = true
 
@@ -23,5 +24,9 @@ resource "github_repository" "example" {
   visibility = "private"
 
   vulnerability_alerts = true
+}
 
+resource "github_branch_default" "default" {
+  repository = github_repository.terraform_repo.name
+  branch     = "main"
 }
