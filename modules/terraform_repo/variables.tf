@@ -14,7 +14,7 @@ variable "visibility" {
   type        = string
   default     = "public"
   validation {
-    condition     = contains(["public", "private"], var.repo_visibility)
+    condition     = contains(["public", "private"], var.visibility)
     error_message = "Visibility must be either 'public' or 'private'."
   }
 }
