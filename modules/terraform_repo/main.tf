@@ -8,6 +8,9 @@ resource "github_repository" "terraform_repo" {
   allow_squash_merge  = true
   allow_update_branch = true
 
+  archived           = false
+  archive_on_destroy = false
+
   auto_init = true
 
   delete_branch_on_merge = true
