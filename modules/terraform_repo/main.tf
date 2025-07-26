@@ -20,6 +20,8 @@ resource "github_repository" "example" {
   gitignore_template = "Terraform"
   license_template   = "mit"
 
-  visibility = "public"
+  visibility = "private"
+
+  vulnerability_alerts = true
 
 }
