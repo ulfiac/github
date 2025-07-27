@@ -1,4 +1,4 @@
-resource "github_repository" "terraform_repo" {
+resource "github_repository" "repo" {
   name        = var.name
   description = var.description
 
@@ -30,6 +30,41 @@ resource "github_repository" "terraform_repo" {
 }
 
 resource "github_branch_default" "default" {
-  repository = github_repository.terraform_repo.name
+  repository = github_repository.repo.name
   branch     = "main"
+}
+
+resource "github_repository_ruleset" "branch_protection" {
+  count = var.visibility == "public" ? 1 : 0
+
+  repository  = github_repository.repo.name
+  name        = "main"
+  target      = "branch"
+  enforcement = "disabled"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    creation = false
+    deletion = true
+    update   = false
+
+    non_fast_forward = true
+
+    required_linear_history = false
+    required_signatures     = false
+
+    pull_request {
+      dismiss_stale_reviews_on_push     = false
+      require_code_owner_review         = false
+      require_last_push_approval        = false
+      required_approving_review_count   = 0
+      required_review_thread_resolution = false
+    }
+  }
 }
