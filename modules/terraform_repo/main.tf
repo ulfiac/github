@@ -24,6 +24,7 @@ resource "github_repository" "repo" {
   gitignore_template = "Terraform"
   license_template   = "mit"
 
+  # trivy:ignore:AVD-GIT-0001
   visibility = var.visibility
 
   vulnerability_alerts = true
